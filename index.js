@@ -5,7 +5,7 @@ var app = express();
 app.set('views', __dirname);
 app.set('view engine', 'jade');
 app.set('port', (process.env.PORT || 5000));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname));
 
 handlePGError = function(err) {
   if (err) return console.error('could not connect to postgres', err);

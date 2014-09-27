@@ -1,3 +1,3 @@
 # WC Occupancy Detector
 
-![Logo](public/logo.png)
+![Logo](logo.png)
