@@ -1,0 +1,22 @@
+{
+  "name": "wc.groupbuddies.com",
+  "description": "WC Ocupancy Detector™, aka the one thing we all needed in our office. Patent pending",
+  "version": "0.0.1",
+  "private": false,
+  "dependencies": {
+    "express": "~4.9.x"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupbuddies/wc.groupbuddies.com"
+  },
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
+  "license": "MIT"
+}
