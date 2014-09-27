@@ -24,14 +24,14 @@ app.get('/', function(req, res) {
   });
 });
 
-app.put('api/:name/:value', function(req, res) {
+app.put('/api/:name/:value', function(req, res) {
   var state = (req.params.value == "1") ? true : false
 
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     if (err) {
       return console.error('could not connect to postgres', err);
     }
-    var query = 'UPDATE bathrooms SET state=($1) WHERE name=($2)';
+    var query = 'UPDATE bathrooms SET status=($1) WHERE name=($2)';
     client.query(query, [state, req.params.name], function(err, result) {
       done();
       if (err) {
