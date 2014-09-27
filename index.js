@@ -5,34 +5,40 @@ var app = express();
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
-app.get('/:name', function(request, response) {
+app.get('/', function(req, res) {
 
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    var query = 'SELECT * FROM bathrooms WHERE name=($1)'
-    client.query(query, [req.params.name], function(err, result) {
+    if (err) {
+      return console.error('could not connect to postgres', err);
+    }
+    var query = 'SELECT * FROM bathrooms'
+    client.query(query, function(err, result) {
       done();
       if (err) {
         console.error(err);
-        response.send("Error " + err);
+        res.send("Error " + err);
       } else {
-        response.send(result.rows);
+        res.send(result.rows);
       }
     });
   });
 });
 
-app.put('api/:name/:value', function(request, response) {
+app.put('api/:name/:value', function(req, res) {
   var state = (req.params.value == "1") ? true : false
 
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+    if (err) {
+      return console.error('could not connect to postgres', err);
+    }
     var query = 'UPDATE bathrooms SET state=($1) WHERE name=($2)';
     client.query(query, [state, req.params.name], function(err, result) {
       done();
       if (err) {
         console.error(err);
-        response.sendStatus(500);
+        res.sendStatus(500);
       } else {
-        response.sendStatus(200);
+        res.sendStatus(200);
       }
     });
   });
