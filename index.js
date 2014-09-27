@@ -37,7 +37,7 @@ app.put('/api/:name/:value', function(req, res) {
   var state = (req.params.value === "true")
 
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-    handleError(err);
+    handlePGError(err);
 
     var query = 'UPDATE bathrooms SET status=($1) WHERE name=($2)';
     client.query(query, [state, req.params.name], function(err, result) {
