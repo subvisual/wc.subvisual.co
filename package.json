@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "private": false,
   "dependencies": {
-    "express": "~4.9.x"
+    "express": "~4.9.x",
+    "pg": "2.x"
   },
   "engines": {
     "node": "0.10.x"
