@@ -5,7 +5,8 @@
   "private": false,
   "dependencies": {
     "express": "~4.9.x",
-    "pg": "2.x"
+    "pg": "2.x",
+    "jade": "*"
   },
   "engines": {
     "node": "0.10.x"

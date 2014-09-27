@@ -2,6 +2,8 @@ var express = require('express');
 var pg = require('pg');
 var app = express();
 
+app.set('views', __dirname);
+app.set('view engine', 'jade');
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 
@@ -21,19 +23,18 @@ app.get('/', function(req, res) {
         console.error(err);
         res.send("Error " + err);
       } else {
-        state = result.rows[0]['status'];
-        if (state) {
-          res.render('busy.html');
-        } else {
-          res.render('free.html')
-        }
+        var status = result.rows[0].status;
+        res.render('index', {
+          title:     status ? "Nope" : "Go ahead!",
+          css_class: status ? "busy" : "free"
+        })
       }
     });
   });
 });
 
 app.put('/api/:name/:value', function(req, res) {
-  var state = (req.params.value == "1") ? true : false
+  var state = (req.params.value === "true")
 
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
     handleError(err);
