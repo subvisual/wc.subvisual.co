@@ -1,13 +1,14 @@
 .busy {
-  background-color: red;
+  background-color: #DB4F4F;
 }
 
 .free {
-  background-color: green;
+  background-color: #6DDB4F;
 }
 
 h1 {
   font-size: 50px;
   text-align: center;
   width: 100%;
+  color: white;
 }
