@@ -62,3 +62,14 @@ of the individual bathroom you're handling
 ```
 ln -s /var/www/wc/sensor/init.sh /etc/init.d/wc
 ```
+
+# TODO
+
+* More support for multiple bathrooms
+* Security. Add a secret token to each bathroom
+
+# Credits
+
+* [Miguel Palhas](https://github.com/naps62) (Developer)
+* [Pedro Costa](https://github.com/pfac) (Developer)
+* [The AirPi project](https://github.com/tomhartley/AirPi) (source code base)
