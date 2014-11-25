@@ -22,6 +22,7 @@ To manually create the database, the following SQL should be enough:
 CREATE table bathrooms (
   name text,
   status boolean DEFAULT false,
+  updated_at timestamp DEFAULT NULL,
   PRIMARY KEY(name)
 );
 ```
