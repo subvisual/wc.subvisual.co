@@ -1,0 +1,19 @@
+Success: Loaded sensor plugin MCP3008
+Success: Loaded sensor plugin LDR
+Success: Loaded output plugin Print
+Check wiring for the LDR measurement, full voltage detected on ADC input 0
+Check wiring for the LDR measurement, full voltage detected on ADC input 0
+Traceback (most recent call last):
+  File "ldr.py", line 188, in <module>
+    response = requests.put(request_url)
+  File "/usr/local/lib/python2.7/dist-packages/requests/api.py", line 103, in put
+    return request('put', url, data=data, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/requests/api.py", line 48, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/requests/sessions.py", line 451, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/requests/sessions.py", line 557, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/requests/adapters.py", line 407, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', error(110, 'Connection timed out'))
