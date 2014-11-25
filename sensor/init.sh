@@ -15,7 +15,7 @@ name="wc"
 
 do_start() {
   echo "starting";
-  python /home/pi/wc.groupbuddies.com/sensor/ldr.py &
+  python /var/www/wc/sensor/ldr.py &
 }
 
 do_stop() {
