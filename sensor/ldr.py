@@ -29,7 +29,7 @@ def signal_handler(signal, frame):
     os.unlink(pidfile)
     exit(0)
 signal.signal(signal.SIGINT, signal_handler)
-signal.signal(signal.SIGKILL, signal_handler)
+signal.signal(signal.SIGTERM, signal_handler)
 
 def get_subclasses(mod,cls):
     for name, obj in inspect.getmembers(mod):
