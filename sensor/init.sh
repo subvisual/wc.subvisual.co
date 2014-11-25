@@ -15,11 +15,19 @@ name="wc"
 
 do_start() {
   echo "starting";
-  python /var/www/wc/sensor/ldr.py 2> /var/log/ldr.err > /var/log/ldr.out &
+  cd /var/www/wc/sensor && python ldr.py 2> /var/log/ldr.err > /var/log/ldr.out &
 }
 
 do_stop() {
   test -e /tmp/ldr.pid && kill $(/tmp/ldr.pid)
+}
+
+do_status() {
+  if [ -e /tmp/ldr.pid ]; then
+    echo "running with pid $(cat /tmp/ldr.pid)"
+  else
+    echo "not running"
+  fi
 }
 
 do_restart() {
