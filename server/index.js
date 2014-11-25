@@ -11,6 +11,24 @@ handlePGError = function(err) {
   if (err) return console.error('could not connect to postgres', err);
 }
 
+connections = []
+
+app.get('/updates', function(req, res) {
+  req.socket.setTimeout(Infinity);
+
+  res.writeHead(200, {
+    'Content-Type': 'text/event-stream',
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive'
+  });
+  res.write('\n');
+
+  connections.push(res);
+  req.on('close', function() {
+    var index = connections.indexOf(res);
+    if (index !== -1) connections.splice(index, 1);
+  });
+});
 
 app.get('/', function(req, res) {
   pg.connect(process.env.DATABASE_URL, function(err, client, done) {
@@ -27,7 +45,7 @@ app.get('/', function(req, res) {
         res.render('templates/index', {
           title:     status ? "Someone's in there" : "Go ahead!",
           css_class: status ? "busy" : "free"
-        })
+        });
       }
     });
   });
@@ -46,6 +64,11 @@ app.put('/api/:name/:value', function(req, res) {
         console.error(err);
         res.sendStatus(500);
       } else {
+        var status = state ? "busy" : "free"
+        connections.forEach(function(conn) {
+          conn.write('data: ' + status + '\n\n');
+        });
+
         res.sendStatus(200);
       }
     });
