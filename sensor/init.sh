@@ -15,7 +15,7 @@ name="wc"
 
 do_start() {
   echo "starting";
-  python /var/www/wc/sensor/ldr.py &
+  python /var/www/wc/sensor/ldr.py 2> /var/log/ldr.err > /var/log/ldr.out &
 }
 
 do_stop() {
