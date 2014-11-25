@@ -19,7 +19,7 @@ do_start() {
 }
 
 do_stop() {
-  test -e /tmp/ldr.pid && kill $(/tmp/ldr.pid)
+  test -e /tmp/ldr.pid && kill $(cat /tmp/ldr.pid)
 }
 
 do_status() {
