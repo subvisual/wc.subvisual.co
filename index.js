@@ -40,7 +40,7 @@ app.put('/api/:name/:value', function(req, res) {
     handlePGError(err);
 
     var query = 'UPDATE bathrooms SET status=($1), updated_at=($2) WHERE name=($3)';
-    client.query(query, [state, new Date().getTime(), req.params.name], function(err, result) {
+    client.query(query, [state, new Date(), req.params.name], function(err, result) {
       done();
       if (err) {
         console.error(err);
