@@ -3,7 +3,7 @@
 # Provides: wc
 # Required-Start: $local_fs
 # Required-Stop: $local_fs
-# Default-Start: 2 3 4 5
+# Default-Start: 2 4 5
 # Default-Stop: 0 1 6
 # Short-Description: wc.groupbuddies.com pusher
 # Description: updates data on wc.groupbuddies.com
