@@ -5,7 +5,7 @@ var app = express();
 app.set('views', __dirname);
 app.set('view engine', 'jade');
 app.set('port', (process.env.PORT || 5000));
-app.use(express.static(__dirname));
+app.use(express.static(__dirname + '/public'));
 
 handlePGError = function(err) {
   if (err) return console.error('could not connect to postgres', err);
@@ -24,7 +24,7 @@ app.get('/', function(req, res) {
         res.send("Error " + err);
       } else {
         var status = result.rows[0].status;
-        res.render('index', {
+        res.render('public/index', {
           title:     status ? "Someone's in there" : "Go ahead!",
           css_class: status ? "busy" : "free"
         })
