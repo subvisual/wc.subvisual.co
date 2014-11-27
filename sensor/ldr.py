@@ -8,28 +8,11 @@ import time
 import inspect
 import os
 import logging
-import signal
 from sys import exit
 from sensors import sensor
 from outputs import output
 
 import requests
-
-pid = str(os.getpid())
-pidfile = "/tmp/ldr.pid"
-
-if os.path.isfile(pidfile):
-    print "%s already exists, exiting" % pidfile
-    sys.exit()
-else:
-    file(pidfile, 'w').write(pid)
-
-def signal_handler(signal, frame):
-    print('Exiting!')
-    os.unlink(pidfile)
-    exit(0)
-signal.signal(signal.SIGINT, signal_handler)
-signal.signal(signal.SIGTERM, signal_handler)
 
 def get_subclasses(mod,cls):
     for name, obj in inspect.getmembers(mod):

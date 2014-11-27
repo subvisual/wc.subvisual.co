@@ -34,7 +34,7 @@ a unique name:
 INSERT INTO bathrooms VALUES("bathroom-name");
 ```
 
-Now your server is ready, with a public (unsecure) API.
+Now your server is ready, with a public (insecure) API.
 You can set the status of each of your bathrooms by sending PUT requests to the
 appropriate URL
 
