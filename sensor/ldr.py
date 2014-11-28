@@ -178,13 +178,22 @@ threshold = mainConfig.getint("Main", "threshold")
 GPIO.setup(redPin,GPIO.OUT,initial=GPIO.LOW)
 GPIO.setup(greenPin,GPIO.OUT,initial=GPIO.LOW)
 
+value = 0;
+result = None;
+def notify_if_changed(new_value):
+    new_result = new_value < threshold
+    if (new_result != result):
+	request_url = ("%s/%s" % (url, new_result)).lower()
+        print("%s    %s  %s  %s" % (request_url, new_value, threshold, new_result))
+    result = new_result
+    value = new_value
+
+
 while True:
-	value = 0
+	new_value = 0
 	for i in sensorPlugins:
-	    value = i.getVal()
-	result = value < threshold
-	request_url = ("%s/%s" % (url, result)).lower()
-	# print ("%s    %s  %s  %s" % (request_url, value, threshold, result))
+	    new_value = i.getVal()
+        notify_if_changed(new_value)
 	response = requests.put(request_url)
 	logging.info("Uploaded successfully")
 	GPIO.output(greenPin,GPIO.HIGH)
