@@ -6,7 +6,15 @@
   background-color: #3C8D0D;
 }
 
-h1 {
+.busy .title:after {
+  content: "Someone's in there";
+}
+
+.free .title:after {
+  content: "Go ahead!";
+}
+
+.title {
   font-size: 50px;
   text-align: center;
   width: 100%;

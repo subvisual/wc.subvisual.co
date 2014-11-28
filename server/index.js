@@ -43,7 +43,6 @@ app.get('/', function(req, res) {
       } else {
         var status = result.rows[0].status;
         res.render('templates/index', {
-          title:     status ? "Someone's in there" : "Go ahead!",
           css_class: status ? "busy" : "free"
         });
       }
