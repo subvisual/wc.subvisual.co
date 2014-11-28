@@ -66,6 +66,10 @@ ln -s /var/www/wc/sensor/init.sh /etc/init.d/wc
 
 # TODO
 
+* ~~Realtime updates~~
+  ([done](https://github.com/groupbuddies/wc.groupbuddies.com/pull/1))
+* ~~Fix server crashes~~
+  ([done](https://github.com/groupbuddies/wc.groupbuddies.com/pull/3))
 * More support for multiple bathrooms
 * Security. Add a secret token to each bathroom
 
