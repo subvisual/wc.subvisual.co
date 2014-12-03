@@ -7,11 +7,13 @@
 }
 
 .busy .title:after {
-  content: "Someone's in there";
+  /* content: "Someone's in there"; */
+  content: "Under maintenance :(";
 }
 
 .free .title:after {
-  content: "Go ahead!";
+  /* content: "Go ahead!"; */
+  content: "Under maintenance :(";
 }
 
 .title {
