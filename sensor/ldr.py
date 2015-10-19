@@ -184,6 +184,7 @@ def notify_if_changed(new_value):
     new_result = new_value < threshold
     if (new_result != result):
 	request_url = ("%s/%s" % (url, new_result)).lower()
+	response = requests.put(request_url)
         print("%s    %s  %s  %s" % (request_url, new_value, threshold, new_result))
     result = new_result
     value = new_value
@@ -192,11 +193,5 @@ def notify_if_changed(new_value):
 while True:
 	new_value = 0
 	for i in sensorPlugins:
-	    new_value = i.getVal()
-        notify_if_changed(new_value)
-	response = requests.put(request_url)
-	logging.info("Uploaded successfully")
-	GPIO.output(greenPin,GPIO.HIGH)
-	GPIO.output(greenPin,GPIO.LOW)
-	GPIO.output(redPin,GPIO.LOW)
+		notify_if_changed(i.getVal())
 	time.sleep(delayTime)
