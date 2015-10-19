@@ -73,7 +73,7 @@ for i in sensorNames:
             pluginData = {}
 
             class MissingField(Exception): pass
-                        
+
             for requiredField in reqd:
                 if sensorConfig.has_option(i,requiredField):
                     pluginData[requiredField]=sensorConfig.get(i,requiredField)
@@ -136,16 +136,16 @@ for i in outputNames:
                 opt = outputClass.optionalData
             except Exception:
                 opt = []
-            
+
             if outputConfig.has_option(i,"async"):
                 async = outputConfig.getbool(i,"async")
             else:
                 async = False
-            
+
             pluginData = {}
 
             class MissingField(Exception): pass
-                        
+
             for requiredField in reqd:
                 if outputConfig.has_option(i,requiredField):
                     pluginData[requiredField]=outputConfig.get(i,requiredField)
@@ -178,20 +178,22 @@ threshold = mainConfig.getint("Main", "threshold")
 GPIO.setup(redPin,GPIO.OUT,initial=GPIO.LOW)
 GPIO.setup(greenPin,GPIO.OUT,initial=GPIO.LOW)
 
-value = 0;
-result = None;
+value = 0
+result = None
+
 def notify_if_changed(new_value):
+    global result, value
     new_result = new_value < threshold
     if (new_result != result):
-	request_url = ("%s/%s" % (url, new_result)).lower()
-	response = requests.put(request_url)
+        request_url = ("%s/%s" % (url, new_result)).lower()
+        response = requests.put(request_url)
         print("%s    %s  %s  %s" % (request_url, new_value, threshold, new_result))
-    result = new_result
+        result = new_result
     value = new_value
 
 
 while True:
-	new_value = 0
-	for i in sensorPlugins:
-		notify_if_changed(i.getVal())
-	time.sleep(delayTime)
+    new_value = 0
+    for i in sensorPlugins:
+        notify_if_changed(i.getVal())
+        time.sleep(delayTime)
